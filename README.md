@@ -25,12 +25,14 @@ Architecture:
 ### 20.04 Dependencies
 
 Runtime:
-Ruby 2.6-3.0: `libffi7 libgmp10 libreadline8 libssl1.1 libyaml-0-2 zlib1g libgdbm6 libgdbm-compat4`
-Ruby 3.1: `libffi7 libgmp10 libreadline8 libssl1.1 libyaml-0-2 zlib1g`
+
+  * Ruby 2.6-3.0: `libffi7 libgmp10 libreadline8 libssl1.1 libyaml-0-2 zlib1g libgdbm6 libgdbm-compat4`
+  * Ruby 3.1: `libffi7 libgmp10 libreadline8 libssl1.1 libyaml-0-2 zlib1g`
 
 Building Native Extensions:
-Ruby 2.6-3.0: `libffi-dev libgmp-dev libreadline-dev libssl-dev libyaml-dev zlib1g-dev libgdbm-dev libgdbm-compat-dev`
-Ruby 3.1: `libffi-dev libgmp-dev libreadline-dev libssl-dev libyaml-dev zlib1g-dev`
+
+  * Ruby 2.6-3.0: `libffi-dev libgmp-dev libreadline-dev libssl-dev libyaml-dev zlib1g-dev libgdbm-dev libgdbm-compat-dev`
+  * Ruby 3.1: `libffi-dev libgmp-dev libreadline-dev libssl-dev libyaml-dev zlib1g-dev`
 
 ## Contributing
 
