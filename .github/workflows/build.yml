@@ -41,5 +41,5 @@ jobs:
             RUBY_SHA256=${{ matrix.ruby_sha256 }}
           push: true
           tags: |
-            ghcr.io/matthewshafer/ruby-ubuntu-container-package:20.04-${{ matrix.ruby_major_minor }}
-            ghcr.io/matthewshafer/ruby-ubuntu-container-package:20.04-${{ matrix.ruby_version }}
+            ghcr.io/${{ github.repository }}:20.04-${{ matrix.ruby_major_minor }}
+            ghcr.io/${{ github.repository }}:20.04-${{ matrix.ruby_version }}
