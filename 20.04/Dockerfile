@@ -121,8 +121,6 @@ RUN sha256sum ./*.deb
 
 FROM scratch AS final
 
-LABEL org.opencontainers.image.description "Scratch image containing a ruby deb that can be installed in an ubuntu 20.04 container"
-
 WORKDIR /
 
 COPY --from=package /buildroot/pkg/ .

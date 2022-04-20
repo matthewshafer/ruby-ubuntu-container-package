@@ -21,6 +21,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Set up label values
+        id: label-values
+        run: |
+          echo ::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
@@ -40,6 +44,10 @@ jobs:
             RUBY_VERSION=${{ matrix.ruby_version }}
             RUBY_SHA256=${{ matrix.ruby_sha256 }}
           push: true
+          labels: |
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.created=${{ steps.label-values.outputs.created }}
+            org.opencontainers.image.description=Ruby ${{ matrix.ruby_version  }} package for ubuntu 20.04 containers
           tags: |
             ghcr.io/${{ github.repository }}:20.04-${{ matrix.ruby_major_minor }}
             ghcr.io/${{ github.repository }}:20.04-${{ matrix.ruby_version }}
