@@ -10,14 +10,20 @@ jobs:
             ruby_version: '2.6.10'
             ruby_sha256: 0dc609f263d49c4176d5725deefc337273676395985b5e017789373e8cadf16e
           - ruby_major_minor: '2.7'
-            ruby_version: '2.7.6'
-            ruby_sha256: e7203b0cc09442ed2c08936d483f8ac140ec1c72e37bb5c401646b7866cb5d10
+            ruby_version: '2.7.8'
+            ruby_sha256: c2dab63cbc8f2a05526108ad419efa63a67ed4074dbbcf9fc2b1ca664cb45ba0
           - ruby_major_minor: '3.0'
-            ruby_version: '3.0.4'
-            ruby_sha256: 70b47c207af04bce9acea262308fb42893d3e244f39a4abc586920a1c723722b
+            ruby_version: '3.0.6'
+            ruby_sha256: 6e6cbd490030d7910c0ff20edefab4294dfcd1046f0f8f47f78b597987ac683e
           - ruby_major_minor: '3.1'
-            ruby_version: '3.1.2'
-            ruby_sha256: 61843112389f02b735428b53bb64cf988ad9fb81858b8248e22e57336f24a83e
+            ruby_version: '3.1.4'
+            ruby_sha256: a3d55879a0dfab1d7141fdf10d22a07dbf8e5cdc4415da1bde06127d5cc3c7b6
+          - ruby_major_minor: '3.2'
+            ruby_version: '3.2.3'
+            ruby_sha256: af7f1757d9ddb630345988139211f1fd570ff5ba830def1cc7c468ae9b65c9ba
+          - ruby_major_minor: '3.3'
+            ruby_version: '3.3.0'
+            ruby_sha256: 96518814d9832bece92a85415a819d4893b307db5921ae1f0f751a9a89a56b7d
     steps:
       - name: Checkout
         uses: actions/checkout@v4

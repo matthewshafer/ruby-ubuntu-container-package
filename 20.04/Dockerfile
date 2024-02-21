@@ -74,6 +74,10 @@ RUN --mount=type=cache,id=apt-cache-$TARGETARCH,target=/var/cache/apt,sharing=lo
       if dpkg --compare-versions "$RUBY_VERSION" lt "3.1"; then \
         buildDeps+=("libgdbm-dev" "libgdbm-compat-dev"); \
       fi \
+      # ruby 3.2+ needs rust to build yjit support
+      && if dpkg --compare-versions "$RUBY_VERSION" ge "3.2"; then\
+        buildDeps+=("rustc"); \
+      fi \
       && apt-get update && apt-get install -y --no-install-recommends "${buildDeps[@]}"
 
 COPY --link --from=sources $SOURCEBASE .
