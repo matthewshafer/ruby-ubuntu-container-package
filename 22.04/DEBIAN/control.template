@@ -1,0 +1,7 @@
+Package: ruby-full
+Version: $RUBY_VERSION
+Architecture: $TARGETARCH
+Maintainer: Matthew Shafer <matthewshafer@mac.com>
+Depends: $RUNTIME_DEPS
+Conflicts: ruby, ruby-dev
+Description: Ruby for a container

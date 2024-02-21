@@ -57,3 +57,50 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}:20.04-${{ matrix.ruby_major_minor }}
             ghcr.io/${{ github.repository }}:20.04-${{ matrix.ruby_version }}
+  jammy-22_04:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - ruby_major_minor: '3.1'
+            ruby_version: '3.1.4'
+            ruby_sha256: a3d55879a0dfab1d7141fdf10d22a07dbf8e5cdc4415da1bde06127d5cc3c7b6
+          - ruby_major_minor: '3.2'
+            ruby_version: '3.2.3'
+            ruby_sha256: af7f1757d9ddb630345988139211f1fd570ff5ba830def1cc7c468ae9b65c9ba
+          - ruby_major_minor: '3.3'
+            ruby_version: '3.3.0'
+            ruby_sha256: 96518814d9832bece92a85415a819d4893b307db5921ae1f0f751a9a89a56b7d
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up label values
+        id: label-values
+        run: |
+          echo "created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: '22.04'
+          platforms: linux/amd64,linux/arm64
+          build-args: |
+            RUBY_VERSION=${{ matrix.ruby_version }}
+            RUBY_SHA256=${{ matrix.ruby_sha256 }}
+          push: true
+          labels: |
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.created=${{ steps.label-values.outputs.created }}
+            org.opencontainers.image.description=Ruby ${{ matrix.ruby_version  }} package for ubuntu 20.04 containers
+          tags: |
+            ghcr.io/${{ github.repository }}:22.04-${{ matrix.ruby_major_minor }}
+            ghcr.io/${{ github.repository }}:22.04-${{ matrix.ruby_version }}
