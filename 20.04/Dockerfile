@@ -70,8 +70,8 @@ RUN --mount=type=cache,id=apt-cache-$TARGETARCH,target=/var/cache/apt,sharing=lo
                  "libssl-dev" \
                  "libyaml-dev" \
                  "zlib1g-dev"); \
-      # ruby 3.1 does not have gdbm or dbm as default gems, so these dependencies arent needed
-      if ! [[ "$RUBY_VERSION" =~ ^3.1 ]]; then \
+      # ruby 3.1+ does not have gdbm or dbm as default gems, so these dependencies arent needed
+      if dpkg --compare-versions "$RUBY_VERSION" lt "3.1"; then \
         buildDeps+=("libgdbm-dev" "libgdbm-compat-dev"); \
       fi \
       && apt-get update && apt-get install -y --no-install-recommends "${buildDeps[@]}"
@@ -99,7 +99,7 @@ COPY DEBIAN $INSTALLBASE/DEBIAN
 # Setup control file
 RUN runtimeDeps="libffi7, libgmp10, libreadline8, libssl1.1, libyaml-0-2, zlib1g"; \
       # ruby 3.1 does not have gdbm or dbm as default gems, so these dependencies arent needed
-      if ! [[ "$RUBY_VERSION" =~ ^3.1 ]]; then \
+      if dpkg --compare-versions "$RUBY_VERSION" lt "3.1"; then \
         runtimeDeps="${runtimeDeps}, libgdbm6, libgdbm-compat4"; \
       fi \
       && RUNTIME_DEPS="$runtimeDeps" \
