@@ -50,6 +50,7 @@ jobs:
             RUBY_VERSION=${{ matrix.ruby_version }}
             RUBY_SHA256=${{ matrix.ruby_sha256 }}
           push: true
+          provenance: false
           labels: |
             org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.created=${{ steps.label-values.outputs.created }}
@@ -97,6 +98,7 @@ jobs:
             RUBY_VERSION=${{ matrix.ruby_version }}
             RUBY_SHA256=${{ matrix.ruby_sha256 }}
           push: true
+          provenance: false
           labels: |
             org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.created=${{ steps.label-values.outputs.created }}
